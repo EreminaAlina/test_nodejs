@@ -29,7 +29,6 @@ export class User {
     password: string;
 
     @Column({
-        type: 'bit',
         nullable: true,
     })
     sex: number;

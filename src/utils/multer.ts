@@ -3,10 +3,10 @@ import path from 'path';
 
 export const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, `./dist/static`);
+        cb(null, `static`);
     },
     filename: function (req, file, cb) {
-        cb(null, `${file.originalname}-${req.params.id}`);
+        cb(null, `${req.params.id}-${file.originalname}`);
     },
 });
 export const upload = multer({

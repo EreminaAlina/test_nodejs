@@ -17,7 +17,7 @@ export const editUserById = async ({ body, params, file }: Request, res: Respons
             if (user.photo) {
                 await fs.unlink(`${file.destination}/${user.photo}`);
             }
-            user.photo = `${file.originalname}-${userId}`;
+            user.photo = `${userId}-${file.originalname}`;
         }
         Object.assign(user, body);
         await userRepository.save(user);

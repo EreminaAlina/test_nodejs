@@ -12,7 +12,7 @@ const initializeServer = async () => {
 
     app.use(express.urlencoded({ extended: true }));
     app.use(express.json());
-    app.use(express.static(`./dist/static`));
+    app.use(express.static(`static`));
     app.use(cors());
     app.use('/user', loginRouter);
     app.use('/', profileRouter);
