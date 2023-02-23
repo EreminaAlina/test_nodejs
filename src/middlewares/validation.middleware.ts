@@ -6,10 +6,12 @@ export const validationMiddleware =
     (req: Request, res: Response, next: NextFunction) => {
         try {
             assert(req.body, validator);
+            next();
         } catch (e) {
             if (e instanceof StructError) {
                 res.status(422).send(e.toString());
+            } else {
+                next(e);
             }
         }
-        next();
     };

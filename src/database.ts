@@ -1,5 +1,6 @@
 import { DataSource } from 'typeorm';
 import { User } from './entities/user';
+import { init1677150261744, userSex1677172797148 } from './migrations';
 
 export const appDataSource = new DataSource({
     type: 'mysql',
@@ -8,10 +9,10 @@ export const appDataSource = new DataSource({
     username: 'root',
     password: 'user',
     database: 'test_schema',
-    synchronize: true,
     entities: [User],
     subscribers: [],
-    migrations: [],
+    migrations: [init1677150261744, userSex1677172797148],
+    migrationsTableName: 'migrations',
 });
 
 export const userRepository = appDataSource.getRepository(User);
