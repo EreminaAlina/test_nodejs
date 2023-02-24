@@ -7,9 +7,9 @@ export const authMiddleware = (req: Request, res: Response, next: NextFunction) 
         return res.status(401).send('Invalid token');
     }
     try {
-        jwt.verify(token, process.env['JWT_SECRET']);
+        jwt.verify(token, process.env.JWT_SECRET);
         next();
     } catch (e) {
-        return res.status(401).send('JWT EXPIRED');
+        return res.status(401).send('Token expired');
     }
 };

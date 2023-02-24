@@ -1,12 +1,14 @@
+import { config } from 'dotenv';
+config();
+
 import express, { NextFunction, Request, Response } from 'express';
 import cors from 'cors';
 import { appDataSource } from './database';
-import { config } from 'dotenv';
 import loginRouter from './routes/user.router';
 import profileRouter from './routes/profile.router';
 
 const app = express();
-config();
+
 const initializeServer = async () => {
     await appDataSource.initialize();
 

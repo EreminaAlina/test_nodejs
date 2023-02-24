@@ -14,7 +14,7 @@ export const signUp = async (req: Request, res: Response, next: NextFunction) =>
         user.email = email;
         user.password = await hash(password);
         user.registration_date = new Date();
-        user.access_token = jwt.sign({ userId: user.id }, process.env['JWT_SECRET'], { expiresIn: '1d' });
+        user.access_token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, { expiresIn: '1d' });
         await userRepository.insert(user);
         res.status(200).send(user.access_token);
     } catch (e) {
@@ -32,7 +32,7 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
         }
         const isValidPass = await compare(password, user.password);
         if (isValidPass) {
-            user.access_token = jwt.sign({ userId: user.id }, process.env['JWT_SECRET'], { expiresIn: '1d' });
+            user.access_token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, { expiresIn: '1d' });
             return res.status(200).send(user.access_token);
         }
         return res.status(401).send();
